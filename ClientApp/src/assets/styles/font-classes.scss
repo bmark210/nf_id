@@ -1,0 +1,104 @@
+.h1 {
+  font-family: "DinPro", sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 62.4px;
+  letter-spacing: 0.02em;
+}
+
+.h2 {
+  font-family: "DinPro", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 34px;
+  color: #c8c8cb;
+}
+
+.text-regular {
+  font-family: "DinPro", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 34px;
+  color: #282827;
+}
+
+.text-light {
+  font-family: "DinPro", sans-serif;
+  font-size: 73px;
+  font-weight: 700;
+  line-height: 73px;
+  color: #282827;
+}
+
+.inter {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18.2px;
+}
+
+.text-1 {
+  font-family: 'DinPro', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 31.2px;
+}
+
+.text-3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26.1px;
+}
+
+.text-form {
+  font-family: "DinPro", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31.2px;
+  letter-spacing: 2px;
+  outline: none;
+
+  &::placeholder {
+    color: #c8c8cb;
+  }
+}
+
+.button-text {
+  font-family: 'DinProBold', sans-serif;
+  font-size: 24px;
+}
+
+.text-error {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18.2px;
+  color: #E94848;
+}
+
+// media
+
+@media screen and (max-width: 768px) {
+  .h1 {
+    font-size: 40px;
+  }
+  .h2 {
+    font-size: 18px;
+  }
+
+  .inter {
+    font-size: 12px;
+  }
+
+  .text-1 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .h1 {
+    font-size: 28px;
+  }
+}
+

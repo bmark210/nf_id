@@ -1,0 +1,10 @@
+.deploy_template:
+    stage: deploy
+    variables: 
+        IMAGE_DEPLOY: ""
+        PORT_DEPLOY: ""
+        NAME_DEPLOY: ""
+    script:
+        - docker rm -f $NAME_DEPLOY
+        - docker pull $IMAGE_DEPLOY
+        - docker run -d --name $NAME_DEPLOY --restart on-failure -p $PORT_DEPLOY:80 $IMAGE_DEPLOY

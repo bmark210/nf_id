@@ -1,0 +1,9 @@
+<button [class]="isLoading ? 'is-loading ' + classes : classes" [type]="type" [disabled]="disabled">
+  @if (isLoading) {
+    <img class="circle-loader" src="assets/images/loaders/Ellipse.png" alt="" />
+  }  @else {
+    <span class="button-text">
+      {{ title }}
+    </span>
+  }
+</button>

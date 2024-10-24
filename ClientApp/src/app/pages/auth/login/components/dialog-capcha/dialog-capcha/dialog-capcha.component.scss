@@ -1,0 +1,15 @@
+.btn-close {
+  position: absolute;
+  left: 50%;
+  bottom: -65px;
+  background: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -1,0 +1,29 @@
+:host {
+  position: fixed;
+  bottom: 24px;
+  transform: translateX(center);
+}
+
+.cookie-consent-banner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-inline: 10px;
+  padding: 24px;
+  box-shadow: 0px 8px 80px 0px #00000014;
+  border-radius: 1rem;
+  background-color: white;
+
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    width: 30px;
+    height: 30px;
+    background: #d5d5d5;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,110 @@
+<div class="login-wrapper">
+  <div class="red-part">
+    <div class="logo">
+      <span class="logo-text">
+        <img src="assets/images/login/N.svg" alt="">
+        <img src="assets/images/login/F.svg" alt="">
+      </span>
+      <img class="logo-img" src="assets/images/login/Vector.svg" alt="" />
+    </div>
+    <div class="main-text">
+      <img src="assets/images/login/main-logo-text.svg" alt="">
+    </div>
+  </div>
+  <div class="white-part">
+    <div class="login-form">
+      @if (!isCodeSent){
+      <div class="login-title h1">авторизация нф ID</div>
+      <form [formGroup]="phoneForm" class="login-block">
+        <div class="phone-number-input">
+          <label class="h2" for="login">номер телефона</label>
+          <input
+            [style]="phoneErrorMessage ? 'border-color: #E94848;' : ''"
+            class="text-form"
+            id="login"
+            type="text"
+            placeholder="+7 (___) ___-__-__"
+            formControlName="phoneNumber"
+            prefix="+7"
+            name="phoneNumber"
+            mask="(000) 000-00-00"
+          />
+          <div>
+            <!-- <div *ngIf="phoneForm.get('phoneNumber')?.invalid && phoneForm.get('phoneNumber')?.touched">
+             <span class="text-error">
+              Введите корректный номер телефона
+             </span>
+            </div> -->
+            <div *ngIf="phoneErrorMessage">
+              <span class="text-error">
+               {{phoneErrorMessage}}
+              </span>
+             </div>
+          </div>
+        </div>
+        <app-captcha [relodCaptchaTrigger]="relodCaptchaTrigger" (captcha)="onCapchaPassed($event)"></app-captcha>
+        <app-button [disabled]="phoneForm.invalid" [title]="'Отправить код'" (click)="onPhoneSubmit()" [isLoading]="isLoading"></app-button>
+      </form>
+      } @else {
+      <div class="code-block">
+        <button class="back-btn" (click)="goBack()">
+          <img src="assets/images/login/arrow.svg" alt="" />
+        </button>
+        <img class="logo" src="assets/images/login/ID.svg" alt="img" />
+        <h2 class="title h1">
+          ПОТВЕРДИТЕ НОМЕР
+          <br />ТЕЛЕФОНА
+        </h2>
+        <h5 class="text-3 text-sended-code">
+          На номер +7{{ phoneForm.get("phoneNumber")?.value | phoneNumberFormat }} отправлен <br />
+          проверочный код
+        </h5>
+        <form [formGroup]="codeForm" class="login-block">
+          <div class="phone-number-input">
+            <label class="h2" for="code">код</label>
+            <input
+              [style]="codeErrorMessage ? 'border-color: #E94848;' : ''"
+              class="text-form"
+              id="code"
+              type="text"
+              placeholder="Введите код"
+              formControlName="code"
+              name="code"
+              mask="0000"
+            />
+            <div>
+              <div *ngIf="codeErrorMessage">
+                <span class="text-error">
+                 {{codeErrorMessage}}
+                </span>
+               </div>
+            </div>
+          </div>
+          <app-button [title]="'Подтвердить'" (click)="onCodeSubmit()" [isLoading]="isLoading" [disabled]="codeForm.invalid"></app-button>
+
+          <ng-template #elseBlock>
+            <app-button [title]="'Запросить код еще раз'" (click)="openCapchaDialog()"></app-button>
+          </ng-template>
+
+          <ng-container *ngIf="($timer | async).minutesLeft > 0 || ($timer | async).secondsLeft > 0; else elseBlock">
+            <ng-container *ngIf="$timer | async as t">
+              <button class="get-code-btn" disabled>
+                <span class="text-1 resend-code">
+                  Повторная отправка будет доступна через <br/> (<span *ngIf="t.hoursLeft">{{t.hoursLeft | number: '2.0'}}:</span>{{ t.minutesLeft | number: '2.0' }}:{{ t.secondsLeft | number: '2.0' }})
+                </span>
+              </button>
+            </ng-container>
+          </ng-container>
+        </form>
+      </div>
+    }
+      <div class="offer-terms">
+        <span class="inter">
+          Продолжая использовать НФ ID,<br />
+          я принимаю <a href="https://onf.ru/policy" target="_blank" class="offer-link">условия оферты</a>
+        </span>
+      </div>
+    </div>
+    <app-cookie-popup></app-cookie-popup>
+  </div>
+</div>

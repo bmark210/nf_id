@@ -1,0 +1,13 @@
+
+// Fix overflow for dialog
+.mat-mdc-dialog-inner-container {
+  overflow: visible !important;
+}
+
+.mat-mdc-dialog-surface {
+  overflow: visible !important;
+}
+
+.cdk-global-scrollblock  {
+  overflow: unset;
+}

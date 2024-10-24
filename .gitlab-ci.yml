@@ -1,0 +1,40 @@
+include: 
+  - local: '.build.gitlab-ci.yml'
+  - local: '.deploy.gitlab-ci.yml'
+
+stages: 
+    - build
+    - deploy
+    
+variables:
+    image_stage: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:stage
+    image_prod: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:prod
+
+before_script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_JOB_TOKEN
+
+build_stage:
+    environment:
+        name: Staging
+        url: https://stage-sdp.onf.ru
+    extends: .build_template
+    tags:
+        - ci01
+    rules:
+        - if: $CI_COMMIT_BRANCH == "develop"
+    variables:
+        IMAGE_BUILD: $image_stage
+        ENVS: stage
+
+build_prod:
+    environment:
+        name: Production
+        url: https://sdp.onf.ru
+    extends: .build_template
+    tags:
+        - onf02
+    rules:
+        - if: $CI_COMMIT_BRANCH == "master"
+    variables:
+        IMAGE_BUILD: $image_prod
+        ENVS: production
